@@ -56,7 +56,6 @@ namespace ft {
 	template<typename T>
 	struct iterator_traits<const T*>
 	{
-		/* 포인터는 산술연산이 가능하므로, 바로 random_access_iterator_tag를 지정해준다 */
 		typedef ft::random_access_iterator_tag			iterator_category;
 		typedef T										value_type;
 		typedef std::ptrdiff_t							difference_type;
@@ -68,13 +67,13 @@ namespace ft {
 	typename ft::iterator_traits<InputIterator>::difference_type
 	distance (InputIterator first, InputIterator last)
 	{
-		typename ft::iterator_traits<InputIterator>::difference_type rtn = 0;
+		typename ft::iterator_traits<InputIterator>::difference_type result = 0;
 		while (first != last)
 		{
-			first++;
-			rtn++;
+			++first;
+			++result;
 		}
-		return (rtn);
+		return (result);
 	}
 }
 
