@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 18:18:12 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/05 20:10:13 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/09 19:41:31 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ namespace ft {
 	template<typename T>
 	struct iterator_traits<T*>
 	{
-		typedef ft::random_access_iterator_tag				iterator_category;
+		typedef ft::random_access_iterator_tag			iterator_category;
 		typedef T										value_type;
-		typedef std::ptrdiff_t								difference_type;
+		typedef std::ptrdiff_t							difference_type;
 		typedef T*										pointer;
 		typedef T&										reference;
 	};
@@ -57,9 +57,9 @@ namespace ft {
 	struct iterator_traits<const T*>
 	{
 		/* 포인터는 산술연산이 가능하므로, 바로 random_access_iterator_tag를 지정해준다 */
-		typedef ft::random_access_iterator_tag				iterator_category;
+		typedef ft::random_access_iterator_tag			iterator_category;
 		typedef T										value_type;
-		typedef std::ptrdiff_t								difference_type;
+		typedef std::ptrdiff_t							difference_type;
 		typedef const T*								pointer;
 		typedef const T&								reference;
 	};
