@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:32:19 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/10 15:35:00 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:15:35 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace ft {
 			reverse_iterator(const reverse_iterator& _x) : _current(_x._current) { }
 			template<typename _Iter>
 			reverse_iterator(const reverse_iterator<_Iter>& _x) : _current(_x.base()) { }
-			~reverse_iterator(void) {}
+			~reverse_iterator(void) { }
 
 			template<typename U>
 			reverse_iterator& operator=(const reverse_iterator<U>& other)
@@ -106,7 +106,6 @@ namespace ft {
 	operator-(const reverse_iterator<_Iterator1>& _x, 
 		const reverse_iterator<_Iterator2>& _y) 
 	{ return _y.base() - _x.base(); }
-
 
 	template<typename _Iterator>
 	reverse_iterator<_Iterator> 

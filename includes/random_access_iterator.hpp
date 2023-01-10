@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:13:06 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/10 15:34:57 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:15:04 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ namespace ft {
 			typedef typename ft::iterator_traits<Iterator>::reference reference;
 			typedef typename ft::iterator_traits<Iterator>::iterator_category iterator_category;
 
-			random_access_iterator(void) : _current(Iterator()) {}
-			explicit random_access_iterator(const Iterator& _i) : _current(_i) {}
+			random_access_iterator(void) : _current(Iterator()) { }
+			explicit random_access_iterator(const Iterator& _i) : _current(_i) { }
 			template <typename U>
-			random_access_iterator(const random_access_iterator<U>& _i) : _current(_i.base()) {}
-			~random_access_iterator(void) {}
+			random_access_iterator(const random_access_iterator<U>& _i) : _current(_i.base()) { }
+			~random_access_iterator(void) { }
 
 			template <typename U>
 			random_access_iterator& operator=(const random_access_iterator<U>& _i) {
