@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: eunlee <eunlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:00:26 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/11 19:17:47 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/17 15:35:17 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include <vector>
-
 #include <memory>
 #include <cstddef>
 #include <stdexcept>
 #include <algorithm>
-#include "./random_access_iterator.hpp"
+#include "./algorithm.hpp"
 #include "./iterator.hpp"
+#include "./random_access_iterator.hpp"
 #include "./reverse_iterator.hpp"
 #include "./type_traits.hpp"
-#include "./algorithm.hpp"
 
 namespace ft {
 	template <class T, class Allocator = std::allocator<T> >
@@ -48,10 +46,11 @@ namespace ft {
 		typedef size_t														size_type;
 		typedef ptrdiff_t													difference_type;
 
-		/* Constructor */
+		/* Empty container constructor (default constructor) */
 		explicit vector(const allocator_type& alloc = allocator_type())
 		: _begin(0), _end(0), _cap(0), _alloc(alloc) {}
 
+		/* Fill constructor */
 		explicit vector(size_type n,
 						const value_type& val = value_type(),
 						const allocator_type& alloc = allocator_type())
@@ -65,6 +64,7 @@ namespace ft {
 			}
 		}
 
+		/* Range constructor */
 		template <class InputIterator>
 		vector(InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(),
@@ -80,6 +80,7 @@ namespace ft {
 			}
 		}
 
+		/* Copy constructor */
 		vector(const vector& x)
 		: _alloc(x._alloc)
 		{
@@ -103,7 +104,7 @@ namespace ft {
 			_alloc.deallocate(_begin, this->capacity());
 		}
 
-		/* operator= */
+		/* operator= (assign operator) */
 		vector& operator=(const vector& x)
 		{
 			if (this != &x) {
@@ -112,9 +113,8 @@ namespace ft {
 			return *this;
 		}
 
-		/* assign */
-		template <class InputIterator>  void assign (InputIterator first,
-				InputIterator last,
+		/* assign - range version */
+		template <class InputIterator>  void assign (InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0)
 		{
 			size_type n = ft::distance(first, last);
@@ -130,6 +130,7 @@ namespace ft {
 			}
 		}
 
+		/* assign - fill version */
 		void assign (size_type n, const value_type& val)
 		{
 			if (capacity() < n)
@@ -226,7 +227,7 @@ namespace ft {
 		/* Modifiers */
 		void clear() { erase(begin(), end()); }
 
-		/* insert */
+		/* Insert */
 		iterator insert(iterator position, const value_type& val)
 		{
 			difference_type diff = position - begin();
