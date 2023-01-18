@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunlee <eunlee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:00:26 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/17 15:35:17 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/18 21:45:11 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,31 +302,6 @@ namespace ft {
 			}
 			return first;
 		}
-		
-		void push_back(const value_type& val)
-		{
-			if (_cap == _end)
-			{
-				size_type n = size() > 0 ? size() * 2 : 1;
-				reserve(n);
-			}
-			_alloc.construct(_end, val);
-			++_end;
-		}
-
-		void pop_back()
-		{
-			--_end;
-			_alloc.destroy(_end);
-		}
-
-		void swap (vector& x)
-		{
-			std::swap(_begin, x._begin);
-			std::swap(_end, x._end);
-			std::swap(_cap, x._cap);
-			std::swap(_alloc, x._alloc);
-		}
 
 	private:
 		pointer				_begin;
@@ -335,56 +310,6 @@ namespace ft {
 		allocator_type		_alloc;
 	};
 
-	template <typename T, class Allocator>
-	bool operator==(const ft::vector<T, Allocator>& x,
-					const ft::vector<T, Allocator>& y)
-	{
-		return x.size() == y.size() &&
-		ft::equal(x.begin(), x.end(), y.begin());
-	}
-
-	template <typename T, class Allocator>
-	bool operator!=(const ft::vector<T, Allocator>& x,
-					const ft::vector<T, Allocator>& y)
-	{
-		return !(x == y);
-	}
-
-	template <typename T, class Allocator>
-	bool operator<(const ft::vector<T, Allocator>& x,
-				const ft::vector<T, Allocator>& y)
-	{
-		return ft::lexicographical_compare(x.begin(), x.end(),
-											y.begin(), y.end());
-	}
-
-	template <typename T, class Allocator>
-	bool operator<=(const ft::vector<T, Allocator>& x,
-					const ft::vector<T, Allocator>& y)
-	{
-		return !(y < x);
-	}
-
-	template <typename T, class Allocator>
-	bool operator>(const ft::vector<T, Allocator>& x,
-				const ft::vector<T, Allocator>& y)
-	{
-		return y < x;
-	}
-
-	template <typename T, class Allocator>
-	bool operator>=(const ft::vector<T, Allocator>& x,
-				const ft::vector<T, Allocator>& y)
-	{
-		return !(x < y);
-	}
-
-	template <typename T, class Allocator>
-	void swap(ft::vector<T, Allocator>& x,
-			ft::vector<T, Allocator>& y)
-	{
-		x.swap(y);
-	}
 }
 
 #endif
