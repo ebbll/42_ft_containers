@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:00:26 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/18 21:45:11 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/19 19:10:33 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,7 @@ namespace ft {
 		/* assign - fill version */
 		void assign (size_type n, const value_type& val)
 		{
-			if (capacity() < n)
-			{
+			if (capacity() < n) {
 				reserve(n);
 			}
 			_end = _begin;
@@ -151,7 +150,7 @@ namespace ft {
 		iterator begin() { return iterator(_begin); }
 		const_iterator begin() const { return const_iterator(_begin); }
 		iterator end() { return iterator(_end); }
-		const_iterator end() const {return iterator(_end); }
+		const_iterator end() const { return iterator(_end); }
 		reverse_iterator rbegin() { return reverse_iterator(end()); }
 		const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
 		reverse_iterator rend() { return reverse_iterator(begin()); }
@@ -164,12 +163,10 @@ namespace ft {
 
 		void reserve(size_type n)
 		{
-			if (max_size() < n)
-			{
+			if (max_size() < n) {
 				throw std::length_error("more than max_size");
 			}
-			if (capacity() < n)
-			{
+			if (capacity() < n) {
 				const size_type old_size = size();
 				pointer _tmp = _alloc.allocate(n);
 				std::uninitialized_copy(_begin, _end, _tmp);
@@ -276,8 +273,9 @@ namespace ft {
 				_alloc.construct(_end);
 			}
 			std::copy_backward(ptr, _end - n, _end);
-			for (InputIterator it = first; it != last; ++it, ++ptr) {
+			for (InputIterator it = first; it != last; ++it) {
 				*ptr = *it;
+				++ptr;
 			}
 		}
 
@@ -303,6 +301,31 @@ namespace ft {
 			return first;
 		}
 
+		void push_back(const value_type& val)
+		{
+			if (_cap == _end)
+			{
+				size_type n = size() > 0 ? size() * 2 : 1;
+				reserve(n);
+			}
+			_alloc.construct(_end, val);
+			++_end;
+		}
+
+		void pop_back()
+		{
+			--_end;
+			_alloc.destroy(_end);
+		}
+
+		void swap (vector& x)
+		{
+			std::swap(_begin, x._begin);
+			std::swap(_end, x._end);
+			std::swap(_cap, x._cap);
+			std::swap(_alloc, x._alloc);
+		}
+
 	private:
 		pointer				_begin;
 		pointer				_end;
@@ -310,6 +333,56 @@ namespace ft {
 		allocator_type		_alloc;
 	};
 
+	template <typename T, class Allocator>
+	bool operator==(const ft::vector<T, Allocator>& x,
+					const ft::vector<T, Allocator>& y)
+	{
+		return x.size() == y.size() &&
+		ft::equal(x.begin(), x.end(), y.begin());
+	}
+
+	template <typename T, class Allocator>
+	bool operator!=(const ft::vector<T, Allocator>& x,
+					const ft::vector<T, Allocator>& y)
+	{
+		return !(x == y);
+	}
+
+	template <typename T, class Allocator>
+	bool operator<(const ft::vector<T, Allocator>& x,
+				const ft::vector<T, Allocator>& y)
+	{
+		return ft::lexicographical_compare(x.begin(), x.end(),
+											y.begin(), y.end());
+	}
+
+	template <typename T, class Allocator>
+	bool operator<=(const ft::vector<T, Allocator>& x,
+					const ft::vector<T, Allocator>& y)
+	{
+		return !(y < x);
+	}
+
+	template <typename T, class Allocator>
+	bool operator>(const ft::vector<T, Allocator>& x,
+				const ft::vector<T, Allocator>& y)
+	{
+		return y < x;
+	}
+
+	template <typename T, class Allocator>
+	bool operator>=(const ft::vector<T, Allocator>& x,
+				const ft::vector<T, Allocator>& y)
+	{
+		return !(x < y);
+	}
+
+	template <typename T, class Allocator>
+	void swap(ft::vector<T, Allocator>& x,
+			ft::vector<T, Allocator>& y)
+	{
+		x.swap(y);
+	}
 }
 
 #endif

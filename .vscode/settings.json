@@ -3,6 +3,8 @@
 		"utility": "cpp",
 		"vector": "cpp",
 		"iterator": "cpp",
-		"__config": "cpp"
+		"__config": "cpp",
+		"__split_buffer": "cpp",
+		"initializer_list": "cpp"
 	}
 }
