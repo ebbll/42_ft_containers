@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 18:18:12 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/11 19:00:16 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:44:20 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <cstddef>
 
 namespace ft {
-	struct input_iterator_tag  {};
-	struct output_iterator_tag {};
-	struct forward_iterator_tag       : public input_iterator_tag         {};
-	struct bidirectional_iterator_tag : public forward_iterator_tag       {};
-	struct random_access_iterator_tag : public bidirectional_iterator_tag {};
+	struct input_iterator_tag	{ };
+	struct output_iterator_tag	{ };
+	struct forward_iterator_tag			: public input_iterator_tag			{ };
+	struct bidirectional_iterator_tag	: public forward_iterator_tag		{ };
+	struct random_access_iterator_tag	: public bidirectional_iterator_tag	{ };
 
 	template<typename Category, typename T, typename Distance = ptrdiff_t,
 			typename Pointer = T*, typename Reference = T&>
@@ -65,11 +65,10 @@ namespace ft {
 
 	template<class InputIterator>
 	typename ft::iterator_traits<InputIterator>::difference_type
-	distance (InputIterator first, InputIterator last)
+	distance(InputIterator first, InputIterator last)
 	{
 		typename ft::iterator_traits<InputIterator>::difference_type result = 0;
-		while (first != last)
-		{
+		while (first != last) {
 			++first;
 			++result;
 		}

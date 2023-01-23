@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:43:01 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/19 19:09:39 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:48:45 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ namespace ft {
 		}
 
 	protected:
-		container_type	c;
+		container_type c;
 	};
 }
 

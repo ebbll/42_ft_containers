@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:45:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/05 20:01:33 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:37:25 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,25 @@ namespace ft {
 	template<typename InputIt1, typename InputIt2>
 	bool lexicographical_compare(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)
 	{
-		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2)
-		{
+		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2) {
 			if (*first1 < *first2)
 				return true;
 			if (*first2 < *first1)
 				return false;
 		}
-		return (first1 == last1) && (first2 != last2);
+		return { (first1 == last1) && (first2 != last2) };
 	}
 
 	template<typename InputIt1, typename InputIt2, typename Compare>
 	bool lexicographical_compare(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Compare comp)
 	{
-		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2)
-		{
+		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2) {
 			if (comp(*first1, *first2))
 				return true;
 			if (comp(*first2, *first1))
 				return false;
 		}
-		return (first1 == last1) && (first2 != last2);
+		return { (first1 == last1) && (first2 != last2) };
 	}
 }
 

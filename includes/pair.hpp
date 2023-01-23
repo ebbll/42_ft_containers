@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:50:15 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/05 20:01:38 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:44:42 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ namespace ft {
 		second_type		second;
 		
 		/* constructor */
-		pair() : first(first_type()), second(second_type()) {}
-		pair(const T1& x, const T2& y) : first(x), second(y) {}
+		pair() : first(first_type()), second(second_type()) { }
+		pair(const T1& x, const T2& y) : first(x), second(y) { }
 		template<class U, class V>
-		pair (const pair<U, V>& pr) : first(pr.first), second(pr.second) {}
+		pair(const pair<U, V>& pr) : first(pr.first), second(pr.second) { }
 
 		pair& operator=(const pair& p)
 		{
