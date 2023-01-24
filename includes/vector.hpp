@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:00:26 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/24 20:16:04 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 20:22:53 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ namespace ft {
 			_begin = _alloc.allocate(n);
 			_end = _begin;
 			_cap = _begin + n;
-			for (; n > 0; n--, ++_end) {
+			for ( ; n > 0; n--, ++_end) {
 				_alloc.construct(_end, val);
 			}
 		}
