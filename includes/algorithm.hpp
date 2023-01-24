@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:45:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/23 15:37:25 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 19:56:22 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define ALGORITHM_HPP
 
 namespace ft {
-	/* equal */
-	template<typename InputIt1, typename InputIt2>
+	/* Equal */
+	template < typename InputIt1, typename InputIt2 >
 	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2)
 	{
 		for (; first1 != last1; ++first1, ++first2) {
@@ -26,7 +26,7 @@ namespace ft {
 		return true;
 	}
 
-	template<typename InputIt1, typename InputIt2, typename BinaryPredicate>
+	template < typename InputIt1, typename InputIt2, typename BinaryPredicate >
 	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryPredicate p)
 	{
 		for (; first1 != last1; ++first1, ++first2) {
@@ -37,8 +37,8 @@ namespace ft {
 		return true;
 	}
 
-	/* lexicographical_compare(사전식 비교) */
-	template<typename InputIt1, typename InputIt2>
+	/* Lexicographical Compare */
+	template < typename InputIt1, typename InputIt2 >
 	bool lexicographical_compare(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)
 	{
 		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2) {
@@ -50,7 +50,7 @@ namespace ft {
 		return { (first1 == last1) && (first2 != last2) };
 	}
 
-	template<typename InputIt1, typename InputIt2, typename Compare>
+	template < typename InputIt1, typename InputIt2, typename Compare >
 	bool lexicographical_compare(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Compare comp)
 	{
 		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2) {

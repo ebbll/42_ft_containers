@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:50:15 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/23 15:44:42 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 20:00:54 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #define PAIR_HPP
 
 namespace ft {
-	/* pair */
-	template <typename T1, typename T2>
+	template < typename T1, typename T2 >
 	struct pair
 	{
 		typedef T1 first_type;
@@ -24,10 +23,10 @@ namespace ft {
 		first_type		first;
 		second_type		second;
 		
-		/* constructor */
+		/* Constructor */
 		pair() : first(first_type()), second(second_type()) { }
 		pair(const T1& x, const T2& y) : first(x), second(y) { }
-		template<class U, class V>
+		template < class U, class V >
 		pair(const pair<U, V>& pr) : first(pr.first), second(pr.second) { }
 
 		pair& operator=(const pair& p)
@@ -40,46 +39,46 @@ namespace ft {
 		}
 	};
 
-	/* relational operators(pair) */
-	template< typename T1, typename T2 >
+	/* Relational Operators */
+	template < typename T1, typename T2 >
 	bool operator==(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return a.first == b.first && a.second == b.second;
 	}
 
-	template< typename T1, typename T2 >
+	template < typename T1, typename T2 >
 	bool operator!=(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return !(a == b);
 	}
 
-	template< typename T1, typename T2 >
+	template < typename T1, typename T2 >
 	bool operator<(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return a.first < b.first || (!(a.first > b.first) && a.second < b.second); 
 	}
 
-	template< typename T1, typename T2 >
+	template < typename T1, typename T2 >
 	bool operator>(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return b < a;
 	}
 
-	template< typename T1, typename T2 >
+	template < typename T1, typename T2 >
 	bool operator<=(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return !(a > b);
 	}
 
-	template< typename T1, typename T2 >
+	template < typename T1, typename T2 >
 	bool operator>=(const ft::pair<T1, T2> &a, const ft::pair<T1, T2> &b)
 	{
 		return !(a < b);
 	}
 
-	/* make_pair */
-	template< typename T1, typename T2 >
-	ft::pair<T1, T2> make_pair( T1 t, T2 u )
+	/* Make Pair */
+	template < typename T1, typename T2 >
+	ft::pair<T1, T2> make_pair(T1 t, T2 u)
 	{
 		return ft::pair<T1, T2>(t, u);
 	}

@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:43:01 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/23 15:48:45 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 20:11:59 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "./vector.hpp"
 
 namespace ft {
-	template <typename T, class Container = ft::vector<T> >
+	template < typename T, class Container = ft::vector<T> >
 	class stack
 	{
 	public:
@@ -39,7 +39,7 @@ namespace ft {
 			return *this;
 		}
 
-		/* Element access */
+		/* Element Access */
 		reference top(void) { return c.back(); }
 		const_reference top(void) const { return c.back(); }
 
@@ -51,25 +51,18 @@ namespace ft {
 		void push(const value_type& value) { c.push_back(value); }
 		void pop(void) { c.pop_back(); }
 
-		/* Friend non member function for relational operators */
-		friend bool operator==(const stack& x, const stack& y) {
-			return x.c == y.c;
-		}
-		friend bool operator!=(const stack& x, const stack& y) {
-			return x.c != y.c;
-		}
-		friend bool operator<(const stack& x, const stack& y) {
-			return x.c < y.c;
-		}
-		friend bool operator<=(const stack& x, const stack& y) {
-			return x.c <= y.c;
-		}
-		friend bool operator>(const stack& x, const stack& y) {
-			return x.c > y.c;
-		}
-		friend bool operator>=(const stack& x, const stack& y) {
-			return x.c >= y.c;
-		}
+		/* Friend Non Member Function for Relational Operators */
+		friend bool operator==(const stack& x, const stack& y) { return x.c == y.c; }
+
+		friend bool operator!=(const stack& x, const stack& y) { return x.c != y.c; }
+
+		friend bool operator<(const stack& x, const stack& y) { return x.c < y.c; }
+
+		friend bool operator<=(const stack& x, const stack& y) { return x.c <= y.c; }
+
+		friend bool operator>(const stack& x, const stack& y) { return x.c > y.c; }
+
+		friend bool operator>=(const stack& x, const stack& y) { return x.c >= y.c; }
 
 	protected:
 		container_type c;

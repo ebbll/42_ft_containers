@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:47:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/23 18:51:41 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 20:11:22 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "./pair.hpp"
 
 namespace ft {
-	template<typename T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
+	template <typename T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 	class set
 	{
 	public:
@@ -43,7 +43,7 @@ namespace ft {
 		typedef ft::reverse_iterator<iterator>			reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
-		/* constructor */
+		/* Constructor */
 		explicit set(const key_compare& comp = key_compare(), const type_allocator& alloc = type_allocator())
 		: _comp(comp), _tree(_comp, alloc)
 		{ }
@@ -61,7 +61,7 @@ namespace ft {
 		: _comp(x._comp), _tree(x._tree)
 		{ }
 
-		/* destructor */
+		/* Destructor */
 		~set(void) { }
 
 		set& operator=(const set& s)
@@ -109,7 +109,9 @@ namespace ft {
 			typedef typename ft::rbtree<value_type, key_type, value_compare, type_allocator>::iterator	rb_iter;
 			_tree.erase((rb_iter&)first, (rb_iter&)last);
 		}
+
 		void swap(set& x) { _tree.swap(x._tree); }
+
 		void clear() { _tree.clear(); }
 
 		/* Observers */
@@ -117,11 +119,11 @@ namespace ft {
 		value_compare value_comp() const { return _comp; }
 
 		/* Operations */
-		iterator find (const value_type& val) const { return _tree.find(val); }
-		size_type count (const value_type& val) const { return !(find(val) == end()); }
-		iterator lower_bound (const value_type& val) const { return _tree.lower_bound(val); }
-		iterator upper_bound (const value_type& val) const { return _tree.upper_bound(val); }
-		ft::pair<iterator,iterator> equal_range (const value_type& val) const { return _tree.equal_range(val); }
+		iterator find(const value_type& val) const { return _tree.find(val); }
+		size_type count(const value_type& val) const { return !(find(val) == end()); }
+		iterator lower_bound(const value_type& val) const { return _tree.lower_bound(val); }
+		iterator upper_bound(const value_type& val) const { return _tree.upper_bound(val); }
+		ft::pair<iterator,iterator> equal_range(const value_type& val) const { return _tree.equal_range(val); }
 
 		/* Allocator */
 		type_allocator get_allocator() const { return _tree.get_allocator(); }
@@ -131,43 +133,43 @@ namespace ft {
 		ft::rbtree<value_type, key_type, value_compare, type_allocator> _tree;
 	};
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator==(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 	}
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator!=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return !(lhs == rhs);
 	}
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator<(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 	}
 	
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator<=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return !(rhs < lhs);
 	}
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator>(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return rhs < lhs;
 	}
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	bool operator>=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
 	{
 		return !(lhs < rhs);
 	}
 
-	template<class Key, class Compare, class Alloc>
+	template < class Key, class Compare, class Alloc >
 	void swap(ft::set<Key, Compare, Alloc>& lhs, ft::set<Key, Compare, Alloc>& rhs) { lhs.swap(rhs); }
 }
 

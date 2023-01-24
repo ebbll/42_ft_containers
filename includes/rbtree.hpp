@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:55:09 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/23 18:37:58 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/24 20:08:47 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define RBTREE_HPP
 
 namespace ft {
-	/* node */
-	template <typename T>
+	/* Node */
+	template < typename T >
 	class node
 	{
 	public:
@@ -47,13 +47,13 @@ namespace ft {
 		}
 	};
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	bool is_lchild(const NodePtr& ptr) { return ptr == ptr->_parent->_lchild; }
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	bool is_rchild(const NodePtr& ptr) { return ptr == ptr->_parent->_rchild; }
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	NodePtr get_min_node(NodePtr ptr, NodePtr nil)
 	{
 		while (ptr->_lchild != nil) {
@@ -62,7 +62,7 @@ namespace ft {
 		return ptr;
 	}
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	NodePtr get_max_node(NodePtr ptr, NodePtr nil)
 	{
 		while (ptr->_rchild != nil) {
@@ -71,7 +71,7 @@ namespace ft {
 		return ptr;
 	}
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	NodePtr get_next_node(NodePtr ptr, NodePtr nil)
 	{
 		if (ptr->_rchild != nil)
@@ -82,7 +82,7 @@ namespace ft {
 		return ptr->_parent;
 	}
 
-	template <typename NodePtr>
+	template < typename NodePtr >
 	NodePtr get_prev_node(NodePtr ptr, NodePtr nil)
 	{
 		if (ptr->_lchild != nil)
@@ -93,11 +93,11 @@ namespace ft {
 		return ptr->_parent;
 	}
 
-	template <typename U, typename V, class Comp>
+	template < typename U, typename V, class Comp >
 	bool _is_equal(const U& u, const V& v, Comp comp) { return !comp(u, v) && !comp(v, u); }
 
-	/* tree_iterator */
-	template <typename U, typename V>
+	/* Tree Iterator */
+	template < typename U, typename V >
 	class tree_iterator
 	{
 	public:
@@ -155,21 +155,24 @@ namespace ft {
 			return tmp;
 		}
 		
-		template <typename T>
+		template < typename T >
 		bool operator==(const tree_iterator<T, node_type>& i) const { return _cur == i.base(); }
 
-		template <typename T>
+		template < typename T >
 		bool operator!=(const tree_iterator<T, node_type>& i) const { return !(*this == i); }
 
-		friend bool operator==(const tree_iterator& x, const tree_iterator& y) {
+		friend bool operator==(const tree_iterator& x, const tree_iterator& y)
+		{
 			return x._cur == y._cur;
 		}
 
-		friend bool operator!=(const tree_iterator& x, const tree_iterator& y) {
+		friend bool operator!=(const tree_iterator& x, const tree_iterator& y)
+		{
 			return !(x == y);
 		}
 
-		operator tree_iterator<const value_type, node_type>(void) const {
+		operator tree_iterator<const value_type, node_type>(void) const
+		{
 			return tree_iterator<const value_type, node_type>(_cur, _nil);
 		}
 
@@ -178,8 +181,8 @@ namespace ft {
 		node_pointer _nil;
 	};
 
-	/* red-black tree */
-	template <typename T, class Key, class Comp, class Allocator>
+	/* Red-Black Tree */
+	template < typename T, class Key, class Comp, class Allocator >
 	class rbtree {
 	public:
 		typedef T		value_type;
@@ -242,19 +245,19 @@ namespace ft {
 			return *this;
 		}
 
-		/* iterator */
+		/* Iterator */
 		iterator begin(void) { return iterator(_begin, _nil); }
 		const_iterator begin(void) const { return const_iterator(_begin, _nil); }
 		iterator end(void) { return iterator(_end, _nil); }
 		const_iterator end(void) const { return const_iterator(_end, _nil); }
 		
-		/* capacity */
+		/* Capacity */
 		size_type size(void) const { return _size; }
 		size_type max_size(void) const { return std::min<size_type>(std::numeric_limits<size_type>::max(),
 			node_traits::max_size(node_allocator())); }
 		bool empty(void) const { return _size == 0; }
 
-		/* modifiers */
+		/* Modifiers */
 		ft::pair<iterator, bool> insert(const value_type& value)
 		{
 			node_pointer ptr = _search_parent(value);
@@ -273,10 +276,10 @@ namespace ft {
 			return iterator(_insert_internal(value, ptr), _nil);
 		}
 
-		template <class InputIterator>
+		template < class InputIterator >
 		void insert(InputIterator first, InputIterator last)
 		{
-			for (; first != last; first++) {
+			for ( ; first != last; first++) {
 				insert(*first);
 			}
 		}
@@ -297,7 +300,7 @@ namespace ft {
 			return tmp;
 		}
 
-		template <typename U>
+		template < typename U >
 		size_type erase(const U& value)
 		{
 			iterator it(find(value));
@@ -341,12 +344,12 @@ namespace ft {
 		allocator_type get_allocator(void) const { return _alloc; }
 
 	private:
-		node_pointer _nil;
-		node_pointer _begin;
-		node_pointer _end;
-		compare_type _comp;
-		node_allocator _alloc;
-		size_type _size;
+		node_pointer	_nil;
+		node_pointer	_begin;
+		node_pointer	_end;
+		compare_type	_comp;
+		node_allocator	_alloc;
+		size_type		_size;
 
 		node_pointer _get_root(void) const { return _end->_lchild; }
 
@@ -395,8 +398,7 @@ namespace ft {
 			}
 			node_pointer cur = _get_root();
 			node_pointer tmp = _end;
-			for ( ; cur != _nil; )
-			{
+			for ( ; cur != _nil; ) {
 				tmp = cur;
 				if (_comp(value, cur->_value)) {
 					cur = cur->_lchild;
@@ -565,8 +567,7 @@ namespace ft {
 
 		void _remove_fixup(node_pointer ptr)
 		{
-			while (ptr != _get_root() && ptr->_black)
-			{
+			while (ptr != _get_root() && ptr->_black) {
 				if (is_lchild(ptr)) {
 					_remove_fixup_left(ptr);
 				} else {
@@ -632,12 +633,11 @@ namespace ft {
 			}
 		}
 
-		template <typename U>
+		template < typename U >
 		node_pointer _find_internal(const U& value) const
 		{
 			node_pointer ptr = _get_root();
-			while (ptr != _nil)
-			{
+			while (ptr != _nil) {
 				if (_comp(value, ptr->_value)) {
 					ptr = ptr->_lchild;
 				} else if (_comp(ptr->_value, value)) {
@@ -653,8 +653,7 @@ namespace ft {
 		{
 			node_pointer ptr = _get_root();
 			node_pointer tmp = _end;
-			while (ptr != _nil)
-			{
+			while (ptr != _nil) {
 				if (!_comp(ptr->_value, key)) {
 					tmp = ptr;
 					ptr = ptr->_lchild;
@@ -669,8 +668,7 @@ namespace ft {
 		{
 			node_pointer ptr = _get_root();
 			node_pointer tmp = _end;
-			while (ptr != _nil)
-			{
+			while (ptr != _nil) {
 				if (_comp(key, ptr->_value)) {
 					tmp = ptr;
 					ptr = ptr->_lchild;
@@ -681,7 +679,7 @@ namespace ft {
 			return tmp;
 		}
 
-		template <typename U>
+		template < typename U >
 		ft::pair<iterator, iterator> _equal_range_internal(const U& key)
 		{
 			iterator lower = lower_bound(key);
@@ -689,7 +687,7 @@ namespace ft {
 			return ft::make_pair(lower, upper);
 		}
 
-		template <typename U>
+		template < typename U >
 		ft::pair<const_iterator, const_iterator> _equal_range_internal(const U& key) const
 		{
 			const_iterator lower = lower_bound(key);
