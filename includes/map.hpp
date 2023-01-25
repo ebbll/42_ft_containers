@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:38:29 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/24 20:00:40 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:01:57 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ namespace ft {
 
 		template < class InputIterator >
 		map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
-				const type_allocator& alloc = type_allocator(),
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
+			const type_allocator& alloc = type_allocator(),
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 		: _comp(comp), _tree(comp, alloc)
 		{
 			insert(first, last);
@@ -192,10 +192,7 @@ namespace ft {
 	}
 
 	template < class Key, class T, class Compare, class Alloc >
-	void swap(ft::map<Key, T, Compare, Alloc>& lhs, ft::map<Key, T, Compare, Alloc>& rhs)
-	{
-		lhs.swap(rhs);
-	}
+	void swap(ft::map<Key, T, Compare, Alloc>& lhs, ft::map<Key, T, Compare, Alloc>& rhs) { lhs.swap(rhs); }
 }
 
 #endif

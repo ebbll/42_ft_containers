@@ -6,12 +6,14 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:32:19 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/24 20:10:01 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:02:21 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REVERSE_ITERATOR_HPP
 #define REVERSE_ITERATOR_HPP
+
+#include "./iterator.hpp"
 
 namespace ft {
 	template < typename Iterator >

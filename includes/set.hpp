@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:47:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/24 20:11:22 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:02:28 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ namespace ft {
 	public:
 		typedef	T										key_type;
 		typedef T										value_type;
+
 		typedef Compare									key_compare;
 		typedef Compare									value_compare;
 		typedef Allocator								allocator_type;
@@ -45,8 +46,7 @@ namespace ft {
 
 		/* Constructor */
 		explicit set(const key_compare& comp = key_compare(), const type_allocator& alloc = type_allocator())
-		: _comp(comp), _tree(_comp, alloc)
-		{ }
+		: _comp(comp), _tree(_comp, alloc) { }
 
 		template <class InputIterator>
 		set(InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
@@ -57,9 +57,7 @@ namespace ft {
 			insert(first, last);
 		}
 		
-		set(const set& x)
-		: _comp(x._comp), _tree(x._tree)
-		{ }
+		set(const set& x) : _comp(x._comp), _tree(x._tree) { }
 
 		/* Destructor */
 		~set(void) { }

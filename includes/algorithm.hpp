@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:45:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/24 20:22:35 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:01:54 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ namespace ft {
 			if (*first2 < *first1)
 				return false;
 		}
-		return { (first1 == last1) && (first2 != last2) };
+		return (first1 == last1) && (first2 != last2);
 	}
 
 	template < typename InputIt1, typename InputIt2, typename Compare >
@@ -59,7 +59,7 @@ namespace ft {
 			if (comp(*first2, *first1))
 				return false;
 		}
-		return { (first1 == last1) && (first2 != last2) };
+		return (first1 == last1) && (first2 != last2);
 	}
 }
 
