@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:47:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/25 23:02:28 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/29 22:17:35 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,19 @@ namespace ft {
 		}
 
 		/* Iterators */
-		iterator begin() { return _tree.begin(); }
-		const_iterator begin() const { return _tree.begin(); }
-		iterator end() { return _tree.end(); }
-		const_iterator end() const { return _tree.end(); }
-		reverse_iterator rbegin() { return reverse_iterator(_tree.end()); }
-		const_reverse_iterator rbegin() const { return const_reverse_iterator(_tree.end()); }
-		reverse_iterator rend() { return reverse_iterator(_tree.begin()); }
-		const_reverse_iterator rend() const { return const_reverse_iterator(_tree.begin()); }
+		iterator begin(void) { return _tree.begin(); }
+		const_iterator begin(void) const { return _tree.begin(); }
+		iterator end(void) { return _tree.end(); }
+		const_iterator end(void) const { return _tree.end(); }
+		reverse_iterator rbegin(void) { return reverse_iterator(_tree.end()); }
+		const_reverse_iterator rbegin(void) const { return const_reverse_iterator(_tree.end()); }
+		reverse_iterator rend(void) { return reverse_iterator(_tree.begin()); }
+		const_reverse_iterator rend(void) const { return const_reverse_iterator(_tree.begin()); }
 
 		/* Capacity */
-		bool empty() const { return _tree.empty(); }
-		size_type size() const { return _tree.size(); }
-		size_type max_size() const { return _tree.max_size(); }
+		bool empty(void) const { return _tree.empty(); }
+		size_type size(void) const { return _tree.size(); }
+		size_type max_size(void) const { return _tree.max_size(); }
 
 		/* Modifiers */
 		ft::pair<iterator,bool> insert(const value_type& val) { return _tree.insert(val); }
@@ -110,11 +110,11 @@ namespace ft {
 
 		void swap(set& x) { _tree.swap(x._tree); }
 
-		void clear() { _tree.clear(); }
+		void clear(void) { _tree.clear(); }
 
 		/* Observers */
-		key_compare key_comp() const { return _comp; }
-		value_compare value_comp() const { return _comp; }
+		key_compare key_comp(void) const { return _comp; }
+		value_compare value_comp(void) const { return _comp; }
 
 		/* Operations */
 		iterator find(const value_type& val) const { return _tree.find(val); }
@@ -124,50 +124,38 @@ namespace ft {
 		ft::pair<iterator,iterator> equal_range(const value_type& val) const { return _tree.equal_range(val); }
 
 		/* Allocator */
-		type_allocator get_allocator() const { return _tree.get_allocator(); }
+		type_allocator get_allocator(void) const { return _tree.get_allocator(); }
 
 	private:
 		Compare _comp;
 		ft::rbtree<value_type, key_type, value_compare, type_allocator> _tree;
 	};
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator==(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
-	}
+	{ return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()); }
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator!=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return !(lhs == rhs);
-	}
+	{ return !(lhs == rhs); }
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator<(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
-	}
+	{ return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); }
 	
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator<=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return !(rhs < lhs);
-	}
+	{ return !(rhs < lhs); }
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator>(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return rhs < lhs;
-	}
+	{ return rhs < lhs; }
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	bool operator>=(const ft::set<Key,Compare,Alloc>& lhs, const ft::set<Key,Compare,Alloc>& rhs)
-	{
-		return !(lhs < rhs);
-	}
+	{ return !(lhs < rhs); }
 
-	template < class Key, class Compare, class Alloc >
+	template <class Key, class Compare, class Alloc>
 	void swap(ft::set<Key, Compare, Alloc>& lhs, ft::set<Key, Compare, Alloc>& rhs) { lhs.swap(rhs); }
 }
 

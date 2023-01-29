@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:55:09 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/25 23:03:10 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/29 22:21:55 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 namespace ft {
 	/* Node */
-	template < typename T >
+	template <typename T>
 	class node
 	{
 	public:
@@ -33,10 +33,13 @@ namespace ft {
 		node*			_rchild;
 		color_type		_black;
 		value_type		_value;
-		
+
+		/* Constructors */
 		node(void) : _parent(NULL), _lchild(NULL), _rchild(NULL), _black(color_type()), _value(value_type()) { }
 		node(const value_type& value) : _parent(NULL), _lchild(NULL), _rchild(NULL), _black(color_type()), _value(value) { }
 		node(const node& n) : _parent(n._parent), _lchild(n._lchild), _rchild(n._rchild), _black(n._black), _value(n._value) { }
+
+		/* Destructor */
 		~node(void) { }
 
 		node& operator=(const node& n)
@@ -53,13 +56,13 @@ namespace ft {
 		}
 	};
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	bool is_lchild(const NodePtr& ptr) { return ptr == ptr->_parent->_lchild; }
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	bool is_rchild(const NodePtr& ptr) { return ptr == ptr->_parent->_rchild; }
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	NodePtr get_min_node(NodePtr ptr, NodePtr nil)
 	{
 		while (ptr->_lchild != nil) {
@@ -68,7 +71,7 @@ namespace ft {
 		return ptr;
 	}
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	NodePtr get_max_node(NodePtr ptr, NodePtr nil)
 	{
 		while (ptr->_rchild != nil) {
@@ -77,7 +80,7 @@ namespace ft {
 		return ptr;
 	}
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	NodePtr get_next_node(NodePtr ptr, NodePtr nil)
 	{
 		if (ptr->_rchild != nil)
@@ -88,7 +91,7 @@ namespace ft {
 		return ptr->_parent;
 	}
 
-	template < typename NodePtr >
+	template <typename NodePtr>
 	NodePtr get_prev_node(NodePtr ptr, NodePtr nil)
 	{
 		if (ptr->_lchild != nil)
@@ -99,11 +102,12 @@ namespace ft {
 		return ptr->_parent;
 	}
 
-	template < typename U, typename V, class Comp >
-	bool _is_equal(const U& u, const V& v, Comp comp) { return !comp(u, v) && !comp(v, u); }
+	template <typename U, typename V, class Comp>
+	bool _is_equal(const U& u, const V& v, Comp comp)
+	{ return !comp(u, v) && !comp(v, u); }
 
 	/* Tree Iterator */
-	template < typename U, typename V >
+	template <typename U, typename V>
 	class tree_iterator
 	{
 	public:
@@ -117,9 +121,12 @@ namespace ft {
 		typedef typename ft::iterator_traits<iterator_type>::reference			node_reference;
 		typedef typename ft::iterator_traits<iterator_type>::iterator_category	iterator_category;
 
+		/* Constructors */
 		tree_iterator(void) : _cur(NULL), _nil(NULL) { }
 		tree_iterator(node_pointer cur, node_pointer nil) : _cur(cur), _nil(nil) { }
 		tree_iterator(const tree_iterator& i) : _cur(i._cur), _nil(i._nil) { }
+
+		/* Destructor */
 		~tree_iterator(void) { }
 
 		tree_iterator& operator=(const tree_iterator& i)
@@ -161,26 +168,22 @@ namespace ft {
 			return tmp;
 		}
 		
-		template < typename T >
-		bool operator==(const tree_iterator<T, node_type>& i) const { return _cur == i.base(); }
+		template <typename T>
+		bool operator==(const tree_iterator<T, node_type>& i) const
+		{ return _cur == i.base(); }
 
-		template < typename T >
-		bool operator!=(const tree_iterator<T, node_type>& i) const { return !(*this == i); }
+		template <typename T>
+		bool operator!=(const tree_iterator<T, node_type>& i) const
+		{ return !(*this == i); }
 
 		friend bool operator==(const tree_iterator& x, const tree_iterator& y)
-		{
-			return x._cur == y._cur;
-		}
+		{ return x._cur == y._cur; }
 
 		friend bool operator!=(const tree_iterator& x, const tree_iterator& y)
-		{
-			return !(x == y);
-		}
+		{ return !(x == y); }
 
 		operator tree_iterator<const value_type, node_type>(void) const
-		{
-			return tree_iterator<const value_type, node_type>(_cur, _nil);
-		}
+		{ return tree_iterator<const value_type, node_type>(_cur, _nil); }
 
 	private:
 		node_pointer _cur;
@@ -188,7 +191,7 @@ namespace ft {
 	};
 
 	/* Red-Black Tree */
-	template < typename T, class Key, class Comp, class Allocator >
+	template <typename T, class Key, class Comp, class Allocator>
 	class rbtree {
 	public:
 		typedef T		value_type;
@@ -207,6 +210,7 @@ namespace ft {
 		typedef std::size_t		size_type;
 		typedef std::ptrdiff_t	difference_type;
 
+		/* Constructor - Default */
 		rbtree(const compare_type& comp = compare_type(), const allocator_type& alloc = allocator_type())
 		: _comp(comp), _alloc(alloc), _size(size_type())
 		{
@@ -221,6 +225,7 @@ namespace ft {
 			_begin = _end;
 		}
 
+		/* Constructor - Copy */
 		rbtree(const rbtree& t)
 		: _comp(t._comp), _alloc(t._alloc), _size(size_type())
 		{
@@ -236,6 +241,7 @@ namespace ft {
 			insert(t.begin(), t.end());
 		}
 
+		/* Destructor */
 		~rbtree(void)
 		{
 			_destruct_node_recursive(_end);
@@ -259,8 +265,8 @@ namespace ft {
 		
 		/* Capacity */
 		size_type size(void) const { return _size; }
-		size_type max_size(void) const { return std::min<size_type>(std::numeric_limits<size_type>::max(),
-			node_traits::max_size(node_allocator())); }
+		size_type max_size(void) const
+		{ return std::min<size_type>(std::numeric_limits<size_type>::max(), node_traits::max_size(node_allocator())); }
 		bool empty(void) const { return _size == 0; }
 
 		/* Modifiers */
@@ -282,7 +288,7 @@ namespace ft {
 			return iterator(_insert_internal(value, ptr), _nil);
 		}
 
-		template < class InputIterator >
+		template <class InputIterator>
 		void insert(InputIterator first, InputIterator last)
 		{
 			for ( ; first != last; first++) {
@@ -292,21 +298,17 @@ namespace ft {
 
 		iterator erase(iterator position)
 		{
-			if (_size == 0) {
-				return iterator(_nil, _nil);
-			}
+			if (_size == 0) { return iterator(_nil, _nil); }
 			iterator tmp(position);
 			++tmp;
-			if (position == begin()) {
-				_begin = tmp.base();
-			}
+			if (position == begin()) { _begin = tmp.base(); }
 			--_size;
 			_remove_internal(position.base());
 			_destruct_node(position.base());
 			return tmp;
 		}
 
-		template < typename U >
+		template <typename U>
 		size_type erase(const U& value)
 		{
 			iterator it(find(value));

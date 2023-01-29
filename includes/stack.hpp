@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:43:01 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/25 23:02:30 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/29 21:56:43 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "./vector.hpp"
 
 namespace ft {
-	template < typename T, class Container = ft::vector<T> >
+	template <typename T, class Container = ft::vector<T> >
 	class stack
 	{
 	public:
@@ -26,16 +26,16 @@ namespace ft {
 		typedef typename container_type::reference			reference;
 		typedef typename container_type::const_reference	const_reference;
 
-		/* Constructor & Destructor */
+		/* Constructor */
 		explicit stack(const container_type& container = container_type()) : c(container) { }
 		// stack(const stack& s) : c(s.c) { }
+
+		/* Destructor */
 		~stack(void) { }
 
 		stack& operator=(const stack& s)
 		{
-			if (this != &s) {
-				c = s.c;
-			}
+			if (this != &s) { c = s.c; }
 			return *this;
 		}
 
