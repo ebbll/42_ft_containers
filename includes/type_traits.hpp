@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:58:48 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/28 22:18:56 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/02/03 11:05:00 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ namespace ft {
 	typedef integral_constant<bool, false>	false_type;
 
 	/* Remove CV (const, volatile) */
-	template <class T> struct remove_cv						{ typedef T type; };
 	template <class T> struct remove_cv<const T>			{ typedef T type; };
+	template <class T> struct remove_cv						{ typedef T type; };
 	template <class T> struct remove_cv<volatile T>			{ typedef T type; };
 	template <class T> struct remove_cv<const volatile T>	{ typedef T type; };
 

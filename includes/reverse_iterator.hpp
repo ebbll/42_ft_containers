@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:32:19 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/29 22:13:21 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:59:40 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ namespace ft {
 		reverse_iterator& operator+=(difference_type n) { _current -= n; return *this; }
 		reverse_iterator& operator-=(difference_type n) { _current += n; return *this; }
 
+	// TODO - 이 부분 다시 확인
 	private:
 		Iterator _current;
 	};

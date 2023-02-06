@@ -6,7 +6,7 @@
 /*   By: eunlee <eunlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:38:29 by eunlee            #+#    #+#             */
-/*   Updated: 2023/01/29 22:20:26 by eunlee           ###   ########.fr       */
+/*   Updated: 2023/01/31 19:49:04 by eunlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ namespace ft {
 		typedef Compare					key_compare;
 		typedef Allocator				allocator_type;
 
-		// 이거 뭐지??
 		typedef typename allocator_type::template rebind<value_type>::other	type_allocator;
 
 		typedef value_type&								reference;

@@ -12,6 +12,16 @@
 		"functional": "cpp",
 		"memory": "cpp",
 		"tuple": "cpp",
-		"algorithm": "cpp"
+		"algorithm": "cpp",
+		"type_traits": "cpp",
+		"__tree": "cpp",
+		"bitset": "cpp",
+		"deque": "cpp",
+		"iosfwd": "cpp",
+		"locale": "cpp",
+		"map": "cpp",
+		"stack": "cpp",
+		"string": "cpp",
+		"string_view": "cpp"
 	}
 }
